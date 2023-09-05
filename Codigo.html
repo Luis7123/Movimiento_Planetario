@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movimiento planetario. &mdash; WordCount 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Dependencias" href="dependencies.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            WordCount
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Proposito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencias</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Movimiento planetario.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importemos-librerias">Importemos librerias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codigo-implementado">Codigo implementado.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#posicion-en-1-ano">Posicion en 1 año</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luego-de-10-anos">Luego de 10 años</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#posicion-de-10-anos">Posicion de 10 años</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WordCount</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Movimiento planetario.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Codigo.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="movimiento-planetario">
+<h1>Movimiento planetario.<a class="headerlink" href="#movimiento-planetario" title="Link to this heading"></a></h1>
+<p>Para este ejercicio tendremos en cuenta algunas ecuaciones diferenciales.
+este será un problema de sistema de ecuaciones ordinales</p>
+<p>(1) <code class="docutils literal notranslate"><span class="pre">\frac{dvx}{dt}=-\frac{\mu</span> <span class="pre">x}{(x^2+y^2)^{1.5}}</span> </code></p>
+<p>(2) $\frac{dvy}{dt}=-\frac{\mu y}{(x^2+y^2)^{1.5}} $</p>
+<p>(3) $\frac{dx}{dt}= Vx$</p>
+<p>(4) $\frac{dy}{dt}= Vy$</p>
+<p>este sera nuestro sistema de ecuaciones, el cual implementaremos con Euler.</p>
+<ul class="simple">
+<li><p>Recordemos que usaremos methodos numericos en el cual el lenguaje principal sera Python*</p></li>
+</ul>
+<section id="importemos-librerias">
+<h2>Importemos librerias<a class="headerlink" href="#importemos-librerias" title="Link to this heading"></a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+<p>Para los valores debemos tener en cuenta que $\mu = 4\pi ^2 $ YA los demas valores serán arrojados por el codigo, además estamos hablando de  unidades astronomicas, tal que el año sera nuestro variable de tiempo, para los valores iniciales del sistema de ecuaciones tomaremos en cuenta lo visto en clase, y una distancia de 1 UA/Y.</p>
+<p>Tal que:</p>
+<p>$X_0= 1$, $y_0 =0$ , $V_0x=0$ y por ultimo $V_oy=2\pi$</p>
+</section>
+<section id="codigo-implementado">
+<h2>Codigo implementado.<a class="headerlink" href="#codigo-implementado" title="Link to this heading"></a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">k1</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">k2</span><span class="o">=</span><span class="mf">1.5</span><span class="p">;</span><span class="n">k3</span><span class="o">=</span><span class="mi">1</span>
+
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)))</span>
+
+    <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="p">((</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># implementacion del sistema de ecuaciones.</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="p">((</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">def</span> <span class="nf">eu_vec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">h</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">w</span><span class="p">))</span><span class="c1">#,columns=[&quot;u3&quot;,&quot;u2&quot;,&quot;u1&quot;])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="c1">#df.tail()</span>
+<span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="err">```</span><span class="n">python</span>
+
+<span class="c1"># Plots</span>
+<span class="c1">## grafica del sistema en 1 año</span>
+<span class="err">```</span><span class="n">py</span>
+<span class="n">A</span><span class="o">=</span><span class="n">eu_vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="c1"># 0 años, hasta 1 año, 10000 iteraciones. grafica de todo el sistema con respecto al tiempo.</span>
+</pre></div>
+</div>
+<p><img alt="Imagen1" src="_images/graf1.png" /></p>
+<p>Esta claro que no se puede entender bien la imagen, pero en pocas palabras son los valores de la posición y de las derivadas..</p>
+</section>
+<section id="posicion-en-1-ano">
+<h2>Posicion en 1 año<a class="headerlink" href="#posicion-en-1-ano" title="Link to this heading"></a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;Posicion en 1 año&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1">#como vemos asemeja a un circulo.</span>
+</pre></div>
+</div>
+<p><img alt="Imagen2" src="_images/graf2.png" />
+Aqui podemos ver algo mas claro, luego de un año se cumple una elipse casi completa, como podemos ver no se pega exactamente, esto sucede realmente en la tierra
+Como tal no hace una elipse perfecta, es ligeramente desfazada</p>
+</section>
+<section id="luego-de-10-anos">
+<h2>Luego de 10 años<a class="headerlink" href="#luego-de-10-anos" title="Link to this heading"></a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">eu_vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;Grafica de todo el sistema con respecto al tiempo de 0 a 10 años.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Imagen3" src="_images/graf3.png" />
+Vemos algo repetitivo, siguiendo los mismos movimientos en el tiempo de la derivada y su posición.</p>
+</section>
+<section id="posicion-de-10-anos">
+<h2>Posicion de 10 años<a class="headerlink" href="#posicion-de-10-anos" title="Link to this heading"></a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#una prueba de 10 años.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;posicion en 10 años&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1">#como vemos asemeja a Muchos circulos</span>
+</pre></div>
+</div>
+<p><img alt="Imagen4" src="_images/graf4.png" /></p>
+<p>Las posiciones han sido bastante buenas y como vemos cada vez se hace “pequeño” pero nunca llega a completar el circulo, podriamos decir que la tierra se esta alejando en el eje (-x) si tomamos en cuenta unas coordenadas $r^3$</p>
+</section>
+</section>
+<section id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>El método de Euler es una aproximación numérica de las soluciones a ecuaciones diferenciales. Esto significa que las trayectorias calculadas usando este método son aproximadas y pueden tener errores, especialmente cuando se utilizan intervalos de tiempo grandes</p></li>
+<li><p>Los planetas en nuestro sistema solar siguen órbitas elípticas alrededor del Sol, como lo describe la ley de gravitación universal de Newton. Estas órbitas elípticas son estables y están determinadas por la interacción gravitatoria entre el planeta y el Sol. Estas como podemos verlo en las imagenes no es una elipse perfecta, es muy circular para ser precisos , además de al irse moviendo la tierra vemos como nunca llega a concluir los puntos de partida iguales a los puntos finales anuales.</p></li>
+<li><p>A medida que un planeta orbita alrededor del Sol o mientras se tenga esta atraccion, su plano orbital también se mantiene en movimiento constante, Eso lo pudimos ver en las primeras graficas, siendo constantes en el paso del tiempo.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dependencies.html" class="btn btn-neutral float-left" title="Dependencias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Harsha.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
