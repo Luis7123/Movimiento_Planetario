@@ -1,6 +1,7 @@
 # Movimiento planetario.
 
 Para este ejercicio tendremos en cuenta algunas ecuaciones diferenciales.
+este será un problema de sistema de ecuaciones ordinales
 
 (1) $\frac{dvx}{dt}=-\frac{\mu x}{(x^2+y^2)^{1.5}} $
 
