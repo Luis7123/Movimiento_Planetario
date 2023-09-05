@@ -55,6 +55,7 @@ u=np.array([0,2*np.pi,1,0])
 ```python
 
 # Plots
+## grafica del sistema en 1 año
 ```py
 A=eu_vec(0,1,10000,u) # 0 años, hasta 1 año, 10000 iteraciones. grafica de todo el sistema con respecto al tiempo.
 ```
@@ -72,7 +73,7 @@ plt.show() #como vemos asemeja a un circulo.
 Aqui podemos ver algo mas claro, luego de un año se cumple una elipse casi completa, como podemos ver no se pega exactamente, esto sucede realmente en la tierra
 Como tal no hace una elipse perfecta, es ligeramente desfazada
 
-# Luego de 10 años
+## Luego de 10 años
 ```py
 A=eu_vec(0,10,10000,u)
 plt.savefig("Grafica de todo el sistema con respecto al tiempo de 0 a 10 años.")
@@ -80,7 +81,7 @@ plt.savefig("Grafica de todo el sistema con respecto al tiempo de 0 a 10 años."
 ![Imagen3](graf3.png)
 Vemos algo repetitivo, siguiendo los mismos movimientos en el tiempo de la derivada y su posición.
 
-# Posicion de 10 años
+## Posicion de 10 años
 ```py
 plt.plot(A[2],A[3]) #una prueba de 10 años.
 plt.savefig("posicion en 10 años")
@@ -89,3 +90,10 @@ plt.show() #como vemos asemeja a Muchos circulos
 ![Imagen4](graf4.png)
 
 Las posiciones han sido bastante buenas y como vemos cada vez se hace "pequeño" pero nunca llega a completar el circulo, podriamos decir que la tierra se esta alejando en el eje (-x) si tomamos en cuenta unas coordenadas $r^3$
+
+# Conclusion
+
+- El método de Euler es una aproximación numérica de las soluciones a ecuaciones diferenciales. Esto significa que las trayectorias calculadas usando este método son aproximadas y pueden tener errores, especialmente cuando se utilizan intervalos de tiempo grandes
+- Los planetas en nuestro sistema solar siguen órbitas elípticas alrededor del Sol, como lo describe la ley de gravitación universal de Newton. Estas órbitas elípticas son estables y están determinadas por la interacción gravitatoria entre el planeta y el Sol. Estas como podemos verlo en las imagenes no es una elipse perfecta, es muy circular para ser precisos , además de al irse moviendo la tierra vemos como nunca llega a concluir los puntos de partida iguales a los puntos finales anuales.
+- A medida que un planeta orbita alrededor del Sol o mientras se tenga esta atraccion, su plano orbital también se mantiene en movimiento constante, Eso lo pudimos ver en las primeras graficas, siendo constantes en el paso del tiempo.
+ 
